@@ -1,0 +1,40 @@
+{
+	"root": {
+		"src": "./src/",
+		"app": "./app/",
+		"build": "./app/"	
+	},
+	"pages": {
+		"src": "",
+		"dest": "",
+		"files": [""],
+		"views": [""],
+		"ignore": [""]
+	},
+	"styles": {
+		"src": "",
+		"dest": "",
+		"files": [""],
+		"entries": [""],
+		"ignore": [""]
+	},
+	"scripts": {
+		"src": "",
+		"dest": "",
+		"files": [""],
+		"entries": [""],
+		"ignore": [""]
+	},
+	"images": {
+		"src": "",
+		"dest": "",
+		"files": [""],
+		"ignore": [""]
+	},
+	"assets": {
+		"src": "",
+		"dest": "",
+		"files": [""],
+		"ignore": [""]
+	}
+}
