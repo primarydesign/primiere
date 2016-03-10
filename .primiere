@@ -1,40 +1,39 @@
-{
+module.exports = {
 	"root": {
 		"src": "./src/",
 		"app": "./app/",
 		"build": "./app/"	
 	},
 	"pages": {
-		"src": "",
-		"dest": "",
-		"files": [""],
-		"views": [""],
-		"ignore": [""]
+		"src": "./src/",
+		"dest": "./app/",
+		"files": ["~/{views,includes}/**/*.html"],
+		"views": ["~/views/**/*.html"],
 	},
 	"styles": {
-		"src": "",
-		"dest": "",
-		"files": [""],
-		"entries": [""],
-		"ignore": [""]
+		"src": "./src/assets/css",
+		"dest": "./app/assets/css",
+		"files": ["~/**/*.css"],
+		"entries": "~/entries/**/*",
+		"ignore": ["~/vendor/**/*"]
 	},
 	"scripts": {
-		"src": "",
-		"dest": "",
-		"files": [""],
-		"entries": [""],
-		"ignore": [""]
+		"src": "./src/assets/js",
+		"dest": "./app/assets/js",
+		"files": ["~/**/*.js"],
+		"entries": ["~/entries/**/*"],
+		"ignore": ["~/vendor/**/*"]
 	},
 	"images": {
-		"src": "",
-		"dest": "",
-		"files": [""],
-		"ignore": [""]
+		"src": "./src/assets/img",
+		"dest": "./app/assets/img",
+		"files": ["~/**/*.{gif,jpg,png,svg}"],
+		"ignore": ["~/__archive__/**/*"]
 	},
 	"assets": {
-		"src": "",
-		"dest": "",
-		"files": [""],
-		"ignore": [""]
+		"src": "./src/assets",
+		"dest": "./app/assets",
+		"files": ["~/*"],
+		"ignore": ["~/{css,img,js}/**/*", "~/_*"]
 	}
 }
