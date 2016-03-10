@@ -6,6 +6,8 @@ const Primiere = require('./');
 const $ = Primiere.configs;
 const _ = Primiere.options;
 
+const postcss = lazy('gulp-postcss');
+
 /**
  * Pages
  */
@@ -13,7 +15,11 @@ gulp.task('pages', function() {});
 /**
  * Styles
  */
-gulp.task('styles', function() {});
+gulp.task('styles', function() {
+	return gulp.src($.styles.entries)
+	.pipe(postcss()(_.postcss))
+	.pipe(gulp.dest($.styles.dest));
+});
 /**
  * Scripts
  */
