@@ -1,13 +1,14 @@
 import dreq from 'require-dir';
 import {argv} from 'yargs';
-import paths from '../.primiere';
+import configs from '../.primiere';
 
-const env = (argv.env||argv.e) || 'development';
-const envars = require('./envars')(env);
 const extend = dreq('./extend');
 const library = dreq('./library');
 const options = dreq('./options');
-const configs = library.configure(paths);
-const envar = library.envar.bind(env);
+const paths = library.configure(configs.paths);
 
-export { configs, env, envar, envars, extend, library, options};
+const env = (argv.env||argv.e) || 'development';
+const envar = library.envar.bind(env);
+const envars = (configs.enableEnvars) ? require('./envars')(env) : {};
+
+export { configs, env, envar, envars, extend, library, options, paths };
