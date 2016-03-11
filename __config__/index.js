@@ -8,5 +8,6 @@ const extend = dreq('./extend');
 const library = dreq('./library');
 const options = dreq('./options');
 const configs = library.configure(paths);
+const envar = library.envar.bind(env);
 
-export { configs, env, envars, extend, library, options};
+export { configs, env, envar, envars, extend, library, options};

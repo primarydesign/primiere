@@ -6,7 +6,9 @@ const Primiere = require('./');
 const $ = Primiere.configs;
 const _ = Primiere.options;
 
+const named = lazy('vinyl-named');
 const postcss = lazy('gulp-postcss');
+const webpack = lazy('gulp-webpack');
 
 /**
  * Pages
@@ -23,7 +25,12 @@ gulp.task('styles', function() {
 /**
  * Scripts
  */
-gulp.task('scripts', function() {});
+gulp.task('scripts', function() {
+	return gulp.src($.scripts.entries)
+	.pipe(named()())
+	.pipe(webpack()(_.wepback))
+	.pipe(gulp.dest($.scripts.dest));
+});
 /**
  * Images
  */
