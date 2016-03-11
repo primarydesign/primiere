@@ -10,6 +10,7 @@ const _ = Primiere.options;
 const Browser = browsersync.create();
 
 const data = lazy('gulp-data');
+const imagemin = lazy('gulp-imagemin');
 const named = lazy('vinyl-named');
 const nunjucks = lazy('gulp-nunjucks-render');
 const postcss = lazy('gulp-postcss');
@@ -50,7 +51,12 @@ gulp.task('scripts', function() {
 /**
  * Images
  */
-gulp.task('images', function() {});
+gulp.task('images', function() {
+	return gulp.src($.images.files)
+	.pipe(imagemin()(_.imagemin))
+	.pipe(gulp.dest($.images.dest))
+	.pipe(Browser.stream());
+});
 /**
  * Assets
  */
