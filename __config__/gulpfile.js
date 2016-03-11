@@ -9,13 +9,18 @@ const _ = Primiere.options;
 const named = lazy('vinyl-named');
 const postcss = lazy('gulp-postcss');
 const webpack = lazy('webpack-stream');
+const nunjucks = lazy('gulp-nunjucks-render');
 
 import print from 'gulp-print';
 
 /**
  * Pages
  */
-gulp.task('pages', function() {});
+gulp.task('pages', function() {
+	gulp.src($.pages.views)
+	.pipe(nunjucks()(_.nunjucks($)))
+	.pipe(gulp.dest($.pages.dest));
+});
 /**
  * Styles
  */

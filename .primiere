@@ -11,7 +11,8 @@ module.exports = {
 			"src": "./src/",
 			"dest": "./app/",
 			"files": ["~/{views,includes}/**/*.html"],
-			"views": ["~/views/**/*.html"]
+			"views": ["~/views/**/*.html"],
+			"paths": ["~/views/","~/includes/"]
 		},
 		"styles": {
 			"src": "./src/assets/css",
