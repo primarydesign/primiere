@@ -9,6 +9,8 @@ const $ = Primiere.paths;
 const _ = Primiere.options;
 const Browser = browsersync.create();
 
+const del = lazy('del');
+const commence = lazy('run-sequence');
 const data = lazy('gulp-data');
 const imagemin = lazy('gulp-imagemin');
 const named = lazy('vinyl-named');
@@ -67,7 +69,11 @@ gulp.task('assets', function() {
 /**
  * Build
  */
-gulp.task('build', function() {});
+gulp.task('build', function() {
+	del()(_.delete($)).then(function() {
+		commence()(['pages','styles','scripts','images','assets']);
+	});
+});
 /**
  * Serve
  */
