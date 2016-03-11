@@ -18,6 +18,7 @@ const nunjucks = lazy('gulp-nunjucks-render');
 const postcss = lazy('gulp-postcss');
 const pretty = lazy('gulp-pretty-url');
 const webpack = lazy('webpack-stream');
+const yargs = lazy('yargs');
 
 /**
  * Pages
@@ -83,4 +84,13 @@ gulp.task('serve', function() {
 /**
  * Watch
  */
-gulp.task('watch', function() {});
+gulp.task('watch', function() {
+	if (yargs().argv.s) {
+		commence()(['serve']);
+	}
+	gulp.watch($.pages.watch, ['pages']);
+	gulp.watch($.styles.watch, ['styles']);
+	gulp.watch($.scripts.watch, ['scripts']);
+	gulp.watch($.images.watch, ['images']);
+	gulp.watch($.assets.watch, ['assets']);
+});
