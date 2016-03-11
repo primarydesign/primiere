@@ -2,10 +2,12 @@ const lazy = require('lazy-req')(require);
 const dreq = require('require-dir');
 const gulp = require('gulp');
 const gif = require('gulp-if');
+const browsersync = require('browser-sync');
 
 const Primiere = require('./');
 const $ = Primiere.paths;
 const _ = Primiere.options;
+const Browser = browsersync.create();
 
 const data = lazy('gulp-data');
 const named = lazy('vinyl-named');
@@ -23,7 +25,8 @@ gulp.task('pages', function() {
 	.pipe(gif(enabled, data()(_.data(Primiere))))
 	.pipe(gif(enabled, nunjucks()(_.nunjucks($))))
 	.pipe(pretty()())
-	.pipe(gulp.dest($.pages.dest));
+	.pipe(gulp.dest($.pages.dest))
+	.pipe(Browser.stream());
 });
 /**
  * Styles
@@ -31,7 +34,8 @@ gulp.task('pages', function() {
 gulp.task('styles', function() {
 	return gulp.src($.styles.entries)
 	.pipe(postcss()(_.postcss))
-	.pipe(gulp.dest($.styles.dest));
+	.pipe(gulp.dest($.styles.dest))
+	.pipe(Browser.stream());
 });
 /**
  * Scripts
@@ -40,7 +44,8 @@ gulp.task('scripts', function() {
 	return gulp.src($.scripts.entries)
 	.pipe(named()())
 	.pipe(webpack()(_.webpack))
-	.pipe(gulp.dest($.scripts.dest));
+	.pipe(gulp.dest($.scripts.dest))
+	.pipe(Browser.stream());
 });
 /**
  * Images
@@ -57,7 +62,9 @@ gulp.task('build', function() {});
 /**
  * Serve
  */
-gulp.task('serve', function() {});
+gulp.task('serve', function() {
+	Browser.init(_.browsersync(Primiere));
+});
 /**
  * Watch
  */
