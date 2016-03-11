@@ -1,0 +1,30 @@
+module.exports = {
+	comments: false,
+	warnings: false,
+	compress: {
+		sequences: true,
+		properties: true,
+		dead_code: false,
+		drop_debugger: false,
+		unsafe: false,
+		conditionals: false,
+		comparisons: false,
+		evaluate: false,
+		booleans: false,
+		loops: true,
+		unused: true,
+		hoist_funs: true,
+		hoist_vars: false,
+		if_return: true,
+		join_vars: true,
+		cascade: false,
+		collapse_vars: true,
+		warnings: false,
+		negate_iife: false,
+		pure_getters: false,
+		pure_funcs: null,
+		drop_console: true,
+		keep_fargs: true,
+		keep_fnames: false
+	}
+};

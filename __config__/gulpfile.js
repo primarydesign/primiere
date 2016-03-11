@@ -3,12 +3,14 @@ const dreq = require('require-dir');
 const gulp = require('gulp');
 
 const Primiere = require('./');
-const $ = Primiere.configs;
+const $ = Primiere.paths;
 const _ = Primiere.options;
 
 const named = lazy('vinyl-named');
 const postcss = lazy('gulp-postcss');
-const webpack = lazy('gulp-webpack');
+const webpack = lazy('webpack-stream');
+
+import print from 'gulp-print';
 
 /**
  * Pages
@@ -28,7 +30,7 @@ gulp.task('styles', function() {
 gulp.task('scripts', function() {
 	return gulp.src($.scripts.entries)
 	.pipe(named()())
-	.pipe(webpack()(_.wepback))
+	.pipe(webpack()(_.webpack))
 	.pipe(gulp.dest($.scripts.dest));
 });
 /**

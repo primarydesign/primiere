@@ -1,4 +1,4 @@
-{
+module.exports = {
 	"enableEnvars": true,
 	"enableTemplating": true,
 	"paths": {
@@ -17,14 +17,14 @@
 			"src": "./src/assets/css",
 			"dest": "./app/assets/css",
 			"files": ["~/**/*.css"],
-			"entries": "~/entries/**/*",
+			"entries": "~/entries/**/*.css",
 			"ignore": ["~/vendor/**/*"]
 		},
 		"scripts": {
 			"src": "./src/assets/js",
 			"dest": "./app/assets/js",
 			"files": ["~/**/*.js"],
-			"entries": ["~/entries/**/*"],
+			"entries": ["~/entries/**/*.js"],
 			"ignore": ["~/vendor/**/*"]
 		},
 		"images": {
