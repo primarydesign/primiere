@@ -10,8 +10,9 @@ module.exports = function(Primiere) {
 		const envars = Primiere.envars;
 		const data = dreq(dataPath);
 		const matter = fm(String(file.contents));
+		const page = {page: matter.attributes };
+		page.page.basename = path.parse(file.path).name;
 		file.contents = new Buffer(matter.body);
-		// console.log(merge(data, envars, matter.attributes));
-		return merge(data, envars, matter.attributes);
+		return merge(data, envars, page);
 	}
 }
