@@ -60,7 +60,10 @@ gulp.task('images', function() {
 /**
  * Assets
  */
-gulp.task('assets', function() {});
+gulp.task('assets', function() {
+	return gulp.src($.assets.files)
+	.pipe(gulp.dest($.assets.dest));
+});
 /**
  * Build
  */
