@@ -6,6 +6,7 @@ const Primiere = require('./');
 const $ = Primiere.paths;
 const _ = Primiere.options;
 
+const data = lazy('gulp-data');
 const named = lazy('vinyl-named');
 const postcss = lazy('gulp-postcss');
 const webpack = lazy('webpack-stream');
@@ -18,6 +19,7 @@ import print from 'gulp-print';
  */
 gulp.task('pages', function() {
 	gulp.src($.pages.views)
+	.pipe(data()(_.data(Primiere)))
 	.pipe(nunjucks()(_.nunjucks($)))
 	.pipe(gulp.dest($.pages.dest));
 });
