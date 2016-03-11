@@ -1,9 +1,10 @@
-var cssnano = require('cssnano');
-var precss = require('precss');
-var reporter = require('postcss-reporter');
-var rucksack = require('rucksack-css');
-var stylelint = require('stylelint');
-var imports = require('postcss-import');
+const cssnano = require('cssnano');
+const precss = require('precss');
+const reporter = require('postcss-reporter');
+const rucksack = require('rucksack-css');
+const stylelint = require('stylelint');
+const imports = require('postcss-import');
+const flexibility = require('postcss-flexibility');
 
 module.exports = [
 	imports(),
@@ -13,5 +14,6 @@ module.exports = [
 	}),
 	precss(),
 	rucksack(),
+	flexibility(),
 	cssnano()
 ];

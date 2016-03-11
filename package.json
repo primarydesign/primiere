@@ -41,5 +41,9 @@
     "webpack": "^1.12.14",
     "webpack-stream": "^3.1.0",
     "yargs": "^4.2.0"
+  },
+  "dependencies": {
+    "flexibility": "^1.0.5",
+    "postcss-flexibility": "^1.0.3"
   }
 }
