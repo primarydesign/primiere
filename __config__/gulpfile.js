@@ -1,6 +1,7 @@
 const lazy = require('lazy-req')(require);
 const dreq = require('require-dir');
 const gulp = require('gulp');
+const gif = require('gulp-if');
 
 const Primiere = require('./');
 const $ = Primiere.paths;
@@ -12,15 +13,14 @@ const postcss = lazy('gulp-postcss');
 const webpack = lazy('webpack-stream');
 const nunjucks = lazy('gulp-nunjucks-render');
 
-import print from 'gulp-print';
-
 /**
  * Pages
  */
 gulp.task('pages', function() {
+	let enabled = Boolean(Primiere.configs.enableTemplating);
 	gulp.src($.pages.views)
-	.pipe(data()(_.data(Primiere)))
-	.pipe(nunjucks()(_.nunjucks($)))
+	.pipe(gif(enabled, data()(_.data(Primiere))))
+	.pipe(gif(enabled, nunjucks()(_.nunjucks($))))
 	.pipe(gulp.dest($.pages.dest));
 });
 /**
