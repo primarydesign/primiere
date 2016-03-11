@@ -9,9 +9,10 @@ const _ = Primiere.options;
 
 const data = lazy('gulp-data');
 const named = lazy('vinyl-named');
-const postcss = lazy('gulp-postcss');
-const webpack = lazy('webpack-stream');
 const nunjucks = lazy('gulp-nunjucks-render');
+const postcss = lazy('gulp-postcss');
+const pretty = lazy('gulp-pretty-url');
+const webpack = lazy('webpack-stream');
 
 /**
  * Pages
@@ -21,6 +22,7 @@ gulp.task('pages', function() {
 	gulp.src($.pages.views)
 	.pipe(gif(enabled, data()(_.data(Primiere))))
 	.pipe(gif(enabled, nunjucks()(_.nunjucks($))))
+	.pipe(pretty()())
 	.pipe(gulp.dest($.pages.dest));
 });
 /**
