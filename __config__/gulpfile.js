@@ -12,11 +12,13 @@ const Browser = browsersync.create();
 const del = lazy('del');
 const commence = lazy('run-sequence');
 const data = lazy('gulp-data');
+const htmlmin = lazy('gulp-htmlmin');
 const imagemin = lazy('gulp-imagemin');
 const named = lazy('vinyl-named');
 const nunjucks = lazy('gulp-nunjucks-render');
 const postcss = lazy('gulp-postcss');
 const pretty = lazy('gulp-pretty-url');
+const replace = lazy('gulp-replace');
 const webpack = lazy('webpack-stream');
 const yargs = lazy('yargs');
 
@@ -29,6 +31,8 @@ gulp.task('pages', function() {
 	.pipe(gif(enabled, data()(_.data(Primiere))))
 	.pipe(gif(enabled, nunjucks()(_.nunjucks($))))
 	.pipe(pretty()())
+	.pipe(replace()(/\$site/g, Primiere.envars.root))
+	.pipe(htmlmin()(_.htmlmin))
 	.pipe(gulp.dest($.pages.dest))
 	.pipe(Browser.stream());
 });
@@ -38,6 +42,7 @@ gulp.task('pages', function() {
 gulp.task('styles', function() {
 	return gulp.src($.styles.entries)
 	.pipe(postcss()(_.postcss))
+	.pipe(replace()(/\$site/g, Primiere.envars.root))
 	.pipe(gulp.dest($.styles.dest))
 	.pipe(Browser.stream());
 });
@@ -48,6 +53,7 @@ gulp.task('scripts', function() {
 	return gulp.src($.scripts.entries)
 	.pipe(named()())
 	.pipe(webpack()(_.webpack))
+	.pipe(replace()(/\$site/g, Primiere.envars.root))
 	.pipe(gulp.dest($.scripts.dest))
 	.pipe(Browser.stream());
 });
