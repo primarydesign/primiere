@@ -24,6 +24,7 @@ const yargs = lazy('yargs');
 
 /**
  * Pages
+ * Renders the compiled HTML, if templating is enabled, and minifies the output.
  */
 gulp.task('pages', function() {
 	let enabled = Boolean(Primiere.configs.enableTemplating);
@@ -38,6 +39,7 @@ gulp.task('pages', function() {
 });
 /**
  * Styles
+ * Runs entry stylesheets through PostCSS and minifies the output.
  */
 gulp.task('styles', function() {
 	return gulp.src($.styles.entries)
@@ -48,6 +50,7 @@ gulp.task('styles', function() {
 });
 /**
  * Scripts
+ * Runs entry entry scripts through Webpack, transpiles ES2015, and minified output.
  */
 gulp.task('scripts', function() {
 	return gulp.src($.scripts.entries)
@@ -59,6 +62,7 @@ gulp.task('scripts', function() {
 });
 /**
  * Images
+ * Compresses images.
  */
 gulp.task('images', function() {
 	return gulp.src($.images.files)
@@ -68,6 +72,7 @@ gulp.task('images', function() {
 });
 /**
  * Assets
+ * Moves assets to build.
  */
 gulp.task('assets', function() {
 	return gulp.src($.assets.files)
@@ -75,6 +80,8 @@ gulp.task('assets', function() {
 });
 /**
  * Build
+ * Runs all compilation tasks.
+ * @flag fresh - Trashes the build directory rebuilding.
  */
 gulp.task('build', function() {
 	del()(_.delete($)).then(function() {
@@ -83,12 +90,16 @@ gulp.task('build', function() {
 });
 /**
  * Serve
+ * Initializes a local development server.
+ * @flag open|o - open index in default browser
  */
 gulp.task('serve', function() {
 	Browser.init(_.browsersync(Primiere));
 });
 /**
  * Watch
+ * Initialize watchers to detect changes and call a given task.
+ * @flag s - run the serve task as well
  */
 gulp.task('watch', function() {
 	if (yargs().argv.s) {
